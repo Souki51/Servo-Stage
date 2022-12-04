@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <script   
+            src="https://code.jquery.com/jquery-3.6.1.js"  
+            integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="   
+            crossorigin="anonymous">
+        </script>
+        <title>Servo Stage</title>
+        <!--logo -->
+        <link rel="icon" type="image/x-icon" href="assets/SS2.svg" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+        <!--Slider-->
+        <link rel="stylesheet" href="css/styles.css">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="styles.css">
+        <!--Leaflet-->
+        <link rel="stylesheet" href="css/leaflet.css" />
+        <script src="leaflet.js"></script> 
+       
+        
+      </head>
+
+
+
+       <!--Mapbox-->
+
+       <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js"></script>
+       <link
+         href="https://api.tiles.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css"
+         rel="stylesheet"
+       />
+       <script src="https://api.mapbox.com/mapbox.js/plugins/turf/v3.0.11/turf.min.js"></script>
+
+       <!-- OSM buildings-->
+        <link href="https://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" rel="stylesheet"/>
+        <script src="https://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+        <script src="https://cdn.osmbuildings.org/classic/0.2.2b/OSMBuildings-Leaflet.js"></script>  
+
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
+
+        <!-- Location -->
+
+
+        <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" /> 
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.78.0/dist/L.Control.Locate.min.css" />
+        <!--Routing-->
+        <link href="//unpkg.com/leaflet@1.8.0/dist/leaflet.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+        <link rel="stylesheet" href="css/styles.css">
+
+        <link rel="stylesheet" href="leaflet-routing-machine.css"> 
+        <link href="https://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" rel="stylesheet"/>
+        <script src="https://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+          <!-- Leaflet Full screen-->
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <link rel="stylesheet" href="https://unpkg.com/leaflet@latest/dist/leaflet.css" />
+          <link rel="stylesheet" href="Control.FullScreen.css" />
+         
+  
+
+        <!--Geojson-->
+        <script type="text/javascript" src="cafe2.js"></script>
+        <script type="text/javascript" src="thisone.js"></script>
+        <script type="text/javascript" src="bus2.js"></script>
+        <script type="text/javascript" src="region.js"></script>
+       
+        <script type="text/javascript" src="BT.geojson"></script>
+
+        <script type="text/javascript" src="leaflet.js"></script>
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand" href="#page-top"><img src="assets/img/SS3.svg" alt="..." style="width:200px;height:160px;"  /></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars ms-1"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="#Accueil">Accueil</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#Spécialités">Spécialités</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#à propos">à propos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Masthead-->
+        <header class="masthead">
+            <div class="container">
+                <div background-image: img src= "assets/img/A.png"></div>
+                <div class="masthead-heading text-uppercase">Bienvenue à Servo Stage!</div>
+                <div class="masthead-subheading">La destination parfaite aux étudiants topographes cherchant un stage </div>
+                <a class="btn btn-primary btn-xl text-uppercase" href="#à propos">Ce que nous faisons</a>
+            </div>
+        </header>
+        <!-- Services-->
+        <section class="page-section bg-light" id="Spécialités">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">Nos Spécialités</h2>
+                    <h3 class="section-subheading text-muted">Vu que la topographie est multidisciplinaire, les domaines d'interventions varient sans répit.<br> 
+                        Voici quelques spécialités des cabinets topographiques figurant sur la mappe:  </h3>
+                </div>
+
+                <div class="slide">
+
+
+                    <input type="radio" name="slider" class="d-none" id="s1" checked>
+                    <input type="radio" name="slider" class="d-none" id="s2">
+                    <input type="radio" name="slider" class="d-none" id="s3">
+                    <input type="radio" name="slider" class="d-none" id="s4">
+                    <input type="radio" name="slider" class="d-none" id="s5">
+                
+                    <div class="cards">
+                      <label for="s1" id="slide1">
+                        <div class="card">
+                          <div class="image">
+                            <img src="assets/img/img3.png" alt="">
+                            <div class="dots">
+                              <div></div>
+                              <div></div>
+                              <div></div>
+                            </div>
+                          </div>
+                          <div class="infos">
+                            <span class="name">Topométrie</span>
+                            <span class="lorem">La topométrie représente l’ensemble des moyens géométriques employés pour effectuer des mesures de positions relatives de points. C’est donc la boîte à outils de base de l'Ingénieur Géomètre Topographe (IGT).
+                                Le travail de l'IGT recouvre une série d’activités complémentaires mais étendues, allant de la topographie sous toutes ses formes à la cartographie, et à tous les aspects techniques et juridiques de la définition de la propriété immobilière.
+                            </span>
+                          </div>
+                          <div class="socials">
+                            <i class="fa-regular fa-heart"></i>
+                            <i class="fa-regular fa-bookmark"></i>
+                            <i class="fa-solid fa-share-nodes"></i>
+                          </div>
+                        </div>
+                      </label>
+                
+                      <label for="s2" id="slide2">
+                        <div class="card">
+                          <div class="image">
+                            <img src="assets/img/img4.png" alt="">
+                            <div class="dots">
+                              <div class="dot1"></div>
+                              <div class="dot2"></div>
+                              <div class="dot3"></div>
+                            </div>
+                          </div>
+                          <div class="infos">
+                            <span class="name">Lasergrammétrie</span>
+                            <span class="lorem">
+                                La lasergrammétrie est une technique appuyée sur l'exploitation des scanners 3D qui permettent de fournir avec une grande rapidité et sans contact de la structure existante quelque soit sa nature, sa taille et sa complexité, des nuages de points XYZ exhaustifs, denses et précis, pouvant être géoréférencés dans tout référentiel local ou absolu.</span>
+                          </div>
+                          <div class="socials">
+                            <i class="fa-regular fa-heart"></i>
+                            <i class="fa-regular fa-bookmark"></i>
+                            <i class="fa-solid fa-share-nodes"></i>
+                          </div>
+                        </div>
+                      </label>
+                
+                      <label for="s3" id="slide3">
+                        <div class="card">
+                          <div class="image">
+                            <img src="assets/img/img1.png" alt="">
+                            <div class="dots">
+                              <div class="dot1"></div>
+                              <div class="dot2"></div>
+                              <div class="dot3"></div>
+                            </div>
+                          </div>
+                          <div class="infos">
+                            <span class="name">Photogrammétrie</span>
+                            <span class="lorem">La photogrammétrie a vu le jour il y'a 30ans, elle Lse basent sur les relevés aériens qui permettent la capture de données à grande échelle et sont généralement la meilleure option de relevé pour la planification de grands projets. Ils peuvent être entrepris à l'aide de capteurs dans des avions, des drones et même des satellites.</span>
+                          </div>
+                          <div class="socials">
+                            <i class="fa-regular fa-heart"></i>
+                            <i class="fa-regular fa-bookmark"></i>
+                            <i class="fa-solid fa-share-nodes"></i>
+                          </div>
+                        </div>
+                      </label>
+                
+                      <label for="s4" id="slide4">
+                        <div class="card">
+                          <div class="image">
+                            <img src="assets/img/img5.png" alt="">
+                            <div class="dots">
+                              <div class="dot1"></div>
+                              <div class="dot2"></div>
+                              <div class="dot3"></div>
+                            </div>
+                          </div>
+                          <div class="infos">
+                            <span class="name">Études VRD</span>
+                            <span class="lorem">
+                                Qu’il s’agisse d’une viabilisation ou d’un réaménagement de zones urbaines en tout type de milieu, la réalisation d'un projet d'aménagement qualitatif et éco-responsable, nécessite avant tout une bonne étude des différents aspects topographiques et environnementaux du site en question au vu d'un bon dimensionnement et positionnement des réseaux divers ainsi qu'une bonne optimisation des réseaux de voirie.</span>
+                          </div>
+                          <div class="socials">
+                            <i class="fa-regular fa-heart"></i>
+                            <i class="fa-regular fa-bookmark"></i>
+                            <i class="fa-solid fa-share-nodes"></i>
+                          </div>
+                        </div>
+                      </label>
+
+
+                      <label for="s5" id="slide5">
+                        <div class="card">
+                          <div class="image">
+                            <img src="assets/img/img2.png" alt="">
+                            <div class="dots">
+                              <div class="dot1"></div>
+                              <div class="dot2"></div>
+                              <div class="dot3"></div>
+                            </div>
+                          </div>
+                          <div class="infos">
+                            <span class="name">Expertise Immobilière</span>
+                            <span class="lorem">L’expertise immobilière consiste à estimer la valeur vénale d’un bien immobilier, qu’il s’agisse d’un terrain, d’un appartement, d’une maison ou même d’un fonds de commerce. Son expertise s’avère indispensable dans le cadre d’un achat ou d’une vente immobilière. Ses services sont sollicités, soit par le propriétaire d’un bien, soit par un futur acquéreur.</span>
+                          </div>
+                          <div class="socials">
+                            <i class="fa-regular fa-heart"></i>
+                            <i class="fa-regular fa-bookmark"></i>
+                            <i class="fa-solid fa-share-nodes"></i>
+                          </div>
+                        </div>
+                      </label>
+        
+                    </div>
+                
+                  </div>
+
+            </div>
+        </section>
+        <!-- Portfolio Grid-->
+        <section class="page-section" id="Mappe">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">Mappe</h2>
+                    <h3 class="section-subheading text-muted">Découvrez les bureaux topographiques dans la région de Rabat</h3>
+            </div>
+
+        <center><div id="map" style="width: 1200px; height: 1000px;"></div></center>
+        <script type="text/javascript" src="cafe2.js"></script>
+        <script type="text/javascript" src="thisone.js"></script>
+        <script type="text/javascript" src="bus2.js"></script>
+        <script type="text/javascript" src="region.js"></script>
+ 
+
+        <script type="text/javascript" src="commune.js"></script>
+
+        <script type="text/javascript" src="leaflet-routing-machine.js"></script>
+        <script type="text/javascript" src="leaflet.js"></script>
+        <script src="https://api.mapbox.com/mapbox.js/plugins/turf/v3.0.11/turf.min.js"></script>
+        <script type="text/javascript" src="leaflet.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.78.0/dist/L.Control.Locate.min.js" charset="utf-8"></script>
+        <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+        <script src="https://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+        <script src="https://cdn.osmbuildings.org/classic/0.2.2b/OSMBuildings-Leaflet.js"></script>
+        <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+        <script src="//unpkg.com/leaflet@1.8.0/dist/leaflet.js"></script>
+        <script type="text/javascript" src="leaflet-routing-machine.js"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.78.0/dist/L.Control.Locate.min.js" charset="utf-8"></script>
+        <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+        <script src="https://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+
+        <script src="Control.FullScreen.js"></script>
+
+
+  
+     
+        <script>
+     
+
+    var uniIcon = L.icon({
+                          iconUrl: 'images/bureau.png',
+
+                          iconSize:     [15, 20], // size of the icon
+                          iconAnchor:   [8, 30], // point of the icon which will correspond to marker's location
+                          popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+                      });
+              
+              var superIcon = L.icon({
+                          iconUrl: 'images/cafe.png',
+
+                          iconSize:     [15, 20], // size of the icon
+                          iconAnchor:   [8, 20], // point of the icon which will correspond to marker's location
+                          popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+                      });
+
+              var busIcon = L.icon({
+                  iconUrl: 'images/bus.png',
+
+                  iconSize:     [15, 20], // size of the icon
+                  iconAnchor:   [8, 20], // point of the icon which will correspond to marker's location
+                  popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+              });
+              
+   
+              var ancfIcon = L.icon({
+                  iconUrl: 'images/logo.png',
+
+                  iconSize:     [30, 25], // size of the icon
+                  iconAnchor:   [8, 20], // point of the icon which will correspond to marker's location
+                  popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+              });
+
+
+              var taxiIcon = L.icon({
+                  iconUrl: 'images/taxi.png',
+
+                  iconSize:     [30, 25], // size of the icon
+                  iconAnchor:   [8, 20], // point of the icon which will correspond to marker's location
+                  popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+              });
+
+var bureau = L.layerGroup();
+          
+        var mA = L.marker([33.962, -6.865],{icon: uniIcon}).bindPopup('<div class="leaflet-popup-content-wrapper">'+
+                    '<h4 class="leaflet-popup-content-wrapper">SCARTOP</h4>'+
+                    '<p class="leaflet-popup-content-wrapper">Offre : Stage Libre</p></div>' , {maxWidth: "auto"}).addTo(bureau);
+        
+        var mB = L.marker([33.944, -6.882],{icon: uniIcon}).bindPopup('<div class="leaflet-popup-content-wrapper">'+
+                    '<h4 class="leaflet-popup-content-wrapper">Boulahia Topographe Etudes Conseils</h4>'+
+                    '<p class="leaflet-popup-content-wrapper">Offre : Aucune</p>'+
+                    '<img src="images/boulahia.jpg" style="width: 200px; height: 100px;"/></div>', {maxWidth: "auto"}).addTo(bureau);
+                   
+        
+        var mC = L.marker([33.956, -6.883],{icon: uniIcon}).bindPopup('<div class="leaflet-popup-content-wrapper">'+
+                    '<h4 class="leaflet-popup-content-wrapper">Geocart Ingenierie</h4>'+
+                    '<p class="leaflet-popup-content-wrapper">Offre : Stage entreprise</p>'+
+                    '<img src="images/geocart.jpg" style="width: 140px; height: 140px;"/></div>', {maxWidth: "auto"}).addTo(bureau);
+                           
+    
+        var mD = L.marker([33.967, -6.895],{icon: uniIcon}).bindPopup('<div class="leaflet-popup-content-wrapper">'+
+                    '<h4 class="leaflet-popup-content-wrapper">Creative Topo</h4>'+
+                    '<p class="leaflet-popup-content-wrapper">Offre: Stage pré-embauche </p>'+
+                    '<img src="images/creative.png" style="width: 200px; height: 100px;"/></div>', {maxWidth: "auto"}).addTo(bureau);
+       
+
+        var mE = L.marker([33.969, -6.882],{icon: uniIcon}).bindPopup('<div class="leaflet-popup-content-wrapper">'+
+                    '<h4 class="leaflet-popup-content-wrapper">Houmymid Abdellatif (Topographe)</h4>'+
+                    '<p class="leaflet-popup-content-wrapper">Appel offre: Ingénieur Topographe </p>'+
+                    '<img src="images/Houmymid.png" style="width: 140px; height: 140px;"/></div>', {maxWidth: "auto"}).addTo(bureau);
+                   
+
+        var mF = L.marker([33.970, -6.901],{icon: uniIcon}).bindPopup('<div class="leaflet-popup-content-wrapper">'+
+                    '<h4 class="leaflet-popup-content-wrapper">Cabinet Ahmed JALAL de Topographie</h4>'+
+                    '<p class="leaflet-popup-content-wrapper">Appel offre: Ingénieur SIG </p>'+
+                    '<img src="images/jalal.jpg" style="width: 170px; height: 100px;"/></div>', {maxWidth: "auto"}).addTo(bureau);
+
+        var mG = L.marker([33.993, -6.875],{icon: uniIcon}).bindPopup('<div class="leaflet-popup-content-wrapper">'+
+                    '<h4 class="leaflet-popup-content-wrapper">Yousfi Khalid (Topographe)</h4>'+
+                    '<p class="leaflet-popup-content-wrapper">Offre : Stage Libre </p></div>', {maxWidth: "auto"}).addTo(bureau);
+
+        
+        var mH = L.marker([33.994, -6.823],{icon: uniIcon}).bindPopup('<div class="leaflet-popup-content-wrapper">'+
+                    '<h4 class="leaflet-popup-content-wrapper">S.E.T.A (Engeneering De Topographie Et Amenagement)</h4>'+
+                    '<p class="leaflet-popup-content-wrapper">Offre : Aucune </p>'+
+                    '<img src= "images/seta.png" style="width: 150px; height: 120px;"/></div>', {maxWidth: "auto"}).addTo(bureau);
+        
+
+        var mT = L.marker([34.001, -6.844],{icon: uniIcon}).bindPopup('<div class="leaflet-popup-content-wrapper">'+
+                    '<h4 class="leaflet-popup-content-wrapper">Dakka Abdelkrim (Topographe)</h4>'+
+                    '<p class="leaflet-popup-content-wrapper">Appel offre: Ingénieur SIG </p></div>', {maxWidth: "auto"}).addTo(bureau);
+                    
+        var mR = L.marker([34.015, -6.854],{icon: uniIcon}).bindPopup('<div class="leaflet-popup-content-wrapper">'+
+                    '<h4 class="leaflet-popup-content-wrapper">Iraqi Abderrahmane (Topographe)</h4>'+
+                    '<p class="leaflet-popup-content-wrapper">Offre : Stage Pré-embauche </p></div>', {maxWidth: "auto"}).addTo(bureau);
+        
+        
+        var mS = L.marker([34.019, -6.833],{icon: uniIcon}).bindPopup('<div class="leaflet-popup-content-wrapper">'+
+                    '<h4 class="leaflet-popup-content-wrapper">Saghir Hafid (Topographe)</h4>'+
+                    '<p class="leaflet-popup-content-wrapper">Offre : Aucune </p></div>', {maxWidth: "auto"}).addTo(bureau);
+        
+        
+
+        var mZin = L.marker([34.024, -6.826],{icon: uniIcon}).bindPopup('<div class="leaflet-popup-content-wrapper">'+
+                    '<h4 class="leaflet-popup-content-wrapper">Charif Mohammed (Topographe)</h4>'+
+                    '<p class="leaflet-popup-content-wrapper">Offre : Aucune </p></div>', {maxWidth: "auto"}).addTo(bureau);
+        
+    
+        var mAs = L.marker([34.022, -6.848],{icon: uniIcon}).bindPopup('<div class="leaflet-popup-content-wrapper">'+
+                    '<h4 class="leaflet-popup-content-wrapper">Saghir Hafid (Topographe)</h4>'+
+                    '<p class="leaflet-popup-content-wrapper">Appel offre: Ingénieur SIG </p></div>', {maxWidth: "auto"}).addTo(bureau);
+        
+        
+       
+        var mBc = L.marker([34.025, -6.847],{icon: uniIcon}).bindPopup('<div class="leaflet-popup-content-wrapper">'+
+                    '<h4 class="leaflet-popup-content-wrapper">Bourhrara Omar (Topographe))</h4>'+
+                    '<p class="leaflet-popup-content-wrapper">Offre : Stage Libre </p></div>', {maxWidth: "auto"}).addTo(bureau);
+        
+        
+        var mFf = L.marker([33.943, -6.898],{icon: uniIcon}).bindPopup('<div class="leaflet-popup-content-wrapper">'+
+                    '<h4 class="leaflet-popup-content-wrapper">Expert Topographie Et Geomatique</h4>'+
+                    '<p class="leaflet-popup-content-wrapper">Offre : Aucune </p>'+
+                    '<img src= "images/ETG.jpg" style="width: 200px; height: 100px;"/></div>', {maxWidth: "auto"}).addTo(bureau);
+        
+
+        var mGg = L.marker([33.939, -6.898],{icon: uniIcon}).bindPopup('<div class="leaflet-popup-content-wrapper">'+
+                    '<h4 class="leaflet-popup-content-wrapper">UTEMAF (étude, ingénierie, topographie et conseil)</h4>'+
+                    '<p class="leaflet-popup-content-wrapper">Offre : Aucune </p>'+
+                    '<img src= "images/utemaf.png" style="width: 140px; height: 140px;"/></div>', {maxWidth: "auto"}).addTo(bureau);
+        
+      
+        var mHh = L.marker([33.935, -6.899],{icon: uniIcon}).bindPopup('<div class="leaflet-popup-content-wrapper">'+
+                    '<h4 class="leaflet-popup-content-wrapper">QUALITOP CONSULTING</h4>'+
+                    '<p class="leaflet-popup-content-wrapper">Appel offre: Ingénieur SIG </p>'+
+                    '<img src= "images/qualitop.jpeg" style="width: 140px; height: 140px;"/></div>', {maxWidth: "auto"}).addTo(bureau);
+
+        var mTt = L.marker([33.926, -6.918],{icon: uniIcon}).bindPopup('<div class="leaflet-popup-content-wrapper">'+
+                    '<h4 class="leaflet-popup-content-wrapper">BAHI NAJIB Geometre Topographe</h4>'+
+                    '<p class="leaflet-popup-content-wrapper">Offre: Stage PFE  </p>'+
+                    '<img src= "images/bahi.png" style="width: 170px; height: 100px;"/></div>', {maxWidth: "auto"}).addTo(bureau);
+        
+        
+        var mTtT = L.marker([34.019, -6.827],{icon: uniIcon}).bindPopup('<div class="leaflet-popup-content-wrapper">'+
+                    '<h4 class="leaflet-popup-content-wrapper">TGM sarl</h4>'+
+                    '<p class="leaflet-popup-content-wrapper">Offre: Stage Pré-embauche</p>'+
+                    '<img src= "images/TGM.png" style="width: 200px; height: 100px;"/></div>', {maxWidth: "auto"}).addTo(bureau);
+    
+        
+        var mTtT = L.marker([34.021, -6.841],{icon: uniIcon}).bindPopup('<div class="leaflet-popup-content-wrapper">'+
+                    '<h4 class="leaflet-popup-content-wrapper">CO EX INGENIERIE</h4>'+
+                    '<p class="leaflet-popup-content-wrapper">Offre: Aucune</p>'+
+                    '<img src= "images/coex.jpg" style="width: 140px; height: 120px;"/></div>', {maxWidth: "auto"}).addTo(bureau);
+        
+        
+       
+
+var mbAttr = 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>';
+var mbUrl = 'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
+    
+var grayscale = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> ',
+  maxZoom: 300,
+});
+var satellite = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
+    maxZoom: 20,
+    subdomains:['mt0','mt1','mt2','mt3']
+});
+
+var building= L.layerGroup();
+              var B3D= L.tileLayer('https://api.mapbox.com/styles/v1/osmbuildings/cjt9gq35s09051fo7urho3m0f/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoib3NtYnVpbGRpbmdzIiwiYSI6IjNldU0tNDAifQ.c5EU_3V8b87xO24tuWil0w', {
+              attribution: '© <a href="https://mapbox.com">Mapbox</a>',
+              maxZoom: 60,
+              }).addTo(building);
+             
+              var osmb = new OSMBuildings(building).load('http://{s}.data.osmbuildings.org/0.2/anonymous/tile/{z}/{x}/{y}.json');
+var ancfcc = L.layerGroup();
+             var mSo = L.marker([33.964, -6.862],{icon: ancfIcon}).bindPopup("<span style='font-family:Calibri ;font-size:13px'>Service de la Conservation Foncière (ANCFCC) Hay Riad Rabat</span>",{maxWidth: "auto"}).addTo(ancfcc);
+             
+             var mZo = L.marker([33.999, -6.863],{icon: ancfIcon}).bindPopup("<span style='font-family:Calibri ;font-size:13px'>ANCFCC Direction de la Cartographie</span>",{maxWidth: "auto"}).addTo(ancfcc);
+             
+             var mZi = L.marker([34.016, -6.836],{icon: ancfIcon}).bindPopup("<span style='font-family:Calibri ;font-size:13px'>Agence Nationale de la Conservation Foncière du Cadastre et de la Cartographie - ANCFCC</span>",{maxWidth: "auto"}).addTo(ancfcc);
+ 
+
+
+            var Styly = {
+                  "color": "Grey",
+                  "opacity": 1,
+                  "weight": 1,
+                  "fillColor": "White"
+              };
+
+              function highlightFeature(e) {
+              var layer = e.target;
+
+                  layer.setStyle({
+                  weight: 5,
+                  color: '#666',
+                  dashArray: '',
+                  fillOpacity: 0.7
+              });
+
+                  if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+                  layer.bringToFront();
+                  }
+
+              }
+
+              function resetHighlight(e) {
+                  region.resetStyle(e.target);
+              }
+
+              var region = L.geoJson(region,{
+                  style: Styly,
+              });
+
+              var geojson = L.geoJson(cafe, {
+                  pointToLayer: function (feature, latlng) {
+                  return L.marker(latlng, {icon: superIcon});
+              },
+              });
+
+              var bus = L.geoJson(bus, {
+                  pointToLayer: function (feature, latlng) {
+                  return L.marker(latlng, {icon: busIcon});
+              },
+              });
+   
+  
+              var myStyle = {
+                  "color": "#db1702",
+                  "weight": 1,
+                  "opacity": 0.65
+              };
+
+              var route=L.geoJSON(thisone, {
+                  style: myStyle
+                  
+              });
+
+              //choroplethe
+              var commune=L.geoJson(commune, {
+                style: style,
+                onEachFeature: onEachFeature
+            });
+
+            function getColor(d) {
+                            return d >= 0 && d < 10 ? '#edf8b1' :
+                                      d >= 10 && d < 30 ? '#7fcdbb' :
+                                         d >= 30 && d < 70 ? '#2c7fb8' :
+                                                 '';
+                        }
+                        function style(feature) {
+                            return {
+                                weight: 2,
+                                opacity: 1,
+                                color: "white",
+                                dashArray: "3",
+                                fillOpacity: 0.9,
+                                fillColor: getColor(feature.properties.Pourcentag)
+                            };
+                        }
+
+                        function highlightFeature(e) {
+                            var layer = e.target;
+
+                            layer.setStyle({
+                                weight: 5,
+                                color: "#666",
+                                dashArray: "",
+                                fillOpacity: 0.7
+                            
+                            })
+    
+                            //  if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+                                layer.bringToFront();
+                            // }
+
+                            info.update(layer.feature.properties);
+                        }
+
+                        function zoomToFeature(e) {
+                            map.fitBounds(e.target.getBounds());
+                        }
+
+
+                        function resetHighlight(e) {
+                            commune.resetStyle(e.target);
+                            info.update();
+                        }
+
+                        function onEachFeature(feature, layer) {
+                            layer.on({
+                                mouseover: highlightFeature,
+                                mouseout: resetHighlight,
+                                click: zoomToFeature
+                            });
+                        }
+
+                        var info = L.control();
+
+                        info.onAdd = function (map) {
+                            this._div = L.DomUtil.create("div", "info");
+                            this.update();
+                            return this._div;
+                        };
+
+
+                    
+
+                 var map = L.map('map', {
+                  center: [34.001, -6.844],
+                  zoom: 13,
+                  measureControl: true,
+                  layers: [grayscale, ancfcc,route, bureau, region],
+                  fullscreenControl: true,
+                  fullscreenControlOptions: {
+                    title:"Show me the fullscreen !",
+                    titleCancel:"Exit fullscreen mode",
+                    position: 'topleft'}
+              });
+
+
+
+              
+
+                        
+              var baseLayers = {
+                  
+                  '3D': building,
+                  'Base Map 2D': grayscale,
+                  'Satellite' : satellite,
+                  
+              };
+
+              var overlays = {
+                  'Bureau Topographique': bureau,
+                  'Café': geojson,
+                  'Routes Nationales': route,
+                  'Stations de Bus' : bus,
+                  'Régions du Maroc' : region,
+                  'ANCFCC': ancfcc,
+                  'Pourcentage des bureaux topographiques <br> par rapport à les Communes : <br> Harhoura , Temara, Ain Attig, <br> Touarga, Mers El Khair': commune
+         
+              };
+
+              var layerControl = L.control.layers(baseLayers, overlays).addTo(map);
+   
+                      
+        //machine routing
+
+        /////itinéraire//////
+
+        map.on('click', function(e){
+        var gotolat = e.latlng.lat
+        var gotolng = e.latlng.lng
+        map.locate().on("locationfound", (i)=>{
+        console.log(i.latlng)
+        L.Routing.control({
+        waypoints: [
+       L.latLng(i.latlng.lat,i.latlng.lng),
+       L.latLng(gotolat,gotolng)
+      ]
+      }).addTo(map)
+      }) 
+    });
+
+    var info = L.control();
+
+        info.onAdd = function (map) {
+            this._div = L.DomUtil.create("div", "info");
+            this.update();
+            return this._div;
+        };
+
+         
+
+        // method that we will use to update the control based on feature properties passed
+        info.update = function (props) {
+            this._div.innerHTML =  "<h4>Pourcentage des bureaux topographiques par région est" + (props ?
+                                    "</b><br />" + props.Pourcentag +"%" + " dans la commune " + "" + props.Nom_Commun + "</h4>"
+                                    : "</b><br />" +"Survoler une région");
+                        };
+
+        info.addTo(map);
+
+        //Search places
+
+        L.Control.geocoder().addTo(map);
+        //scale
+        
+        L.control.scale().addTo(map);
+
+        //location
+        L.control.locate().addTo(map);
+        
+</script>
+     
+    <div class="col-lg-4">
+    <a id="btn-contact" class="btn btn-success bg-green-light" href="#contact">Contacter</a>
+
+    </div>
+        </section>
+        <!-- About-->
+        <section class="page-section bg-light" id="à propos">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">à propos de nous</h2>
+                    
+                </div>
+        
+
+
+            <div class="container_about">
+            <div class="about-our-mission__split1" data-delay="100">
+                <h2 class="h1 font-weight-700"><span>Nous enrichissons les expériences des étudiants et mettons en place des solutions qui répondent à leurs besoins</span></h2>
+                <p>Servo Stage est un serveur de stage conseillé aux étudiants ou jeune diplômé des Sciences Géomatiques et ingénierie Topographique. Ce site concentre une bonne partie des offres de stages les plus intéressantes du marché, sur toutes les disciplines de la filière et toutes les fonctions. 
+                    <br> Sa force est que la sélection est faite en fonction de la qualité des missions proposées : Notre équipe assure qu’ils vérifient l’intérêt des offres avant de décider de les publier ce qui est très rassurant. 
+                    <br> Les principaux objectifs de ce site sont d’une part, la mise en relation entre les candidats et les recruteurs via la publication d’offres de stage et d’emploi et d’autre part la concentration des informations en un seul site pour réduire la recherche entre Linkdin et d'autres plateformes. 
+                    <br> Le site Servo Stage.com permet à tout utilisateur connecté au réseau d’accéder à la carte rassemblant les cabinets topographiques dans la région de Rabat/salé et de s’abonner à certains services spécifiques.
+
+                </p>
+            
+            </div>
+
+            <div class="about-our-mission__split">
+                <div class="about-our-mission__image-wrapper">
+                  <img class="about-our-mission__image" src="assets/img/CC.jpg" alt="Soukaina et Asmaa">
+                  
+                </div>
+              </div>
+            </div>
+
+        </section>
+        <!-- Team-->
+        <div class="hsg-page-header__edge">
+            <svg viewBox="0 0 500 50" preserveAspectRatio="xMinYMin meet">
+              <path d="M0,50 L0,4 C95,-23 285,115 500,2 L500,50 L0,50 Z" style="stroke: none; fill:#f8f9fa;"></path>
+            </svg>
+        <section class="page-section bg-light" id="Notre équipe">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">Notre équipe</h2>
+                    <h3 class="section-subheading text-muted">Les leaders d'aujourd'hui et les licornes de demain.</h3>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="team-member">
+                            <img class="mx-auto rounded-circle" src="assets/img/team/1.jpg" alt="..." />
+                            <h4>Boujdi Soukaina</h4>
+                            <p class="text-muted">ÉTUDIANTE EN 3CI SCIENCES GÉOMATIQUES ET INGÉNIEURIE TOPOGRAPHIQUE</p>
+                            <a class="btn btn-dark btn-social mx-2" href="https://www.linkedin.com/in/soukaina-boujdi-877a621ba/" aria-label="Soukaina LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="team-member">
+                            <img class="mx-auto rounded-circle" src="assets/img/team/2.jpg" alt="..." />
+                            
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="team-member">
+                            <img class="mx-auto rounded-circle" src="assets/img/team/3.jpg" alt="..." />
+                            <h4>Moussaoui Asmaa </h4>
+                            <p class="text-muted">ÉTUDIANTE EN 3CI SCIENCES GÉOMATIQUES ET INGÉNIEURIE TOPOGRAPHIQUE</p>
+                            <a class="btn btn-dark btn-social mx-2" href="https://www.linkedin.com/in/moussaouiasmaa/" aria-label="Asmaa LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="testimonial__text-wrapper "><p class="large text-muted">"Success is making those who believed in you look brilliant."</p></div>
+                </div>
+                      </div>
+                    </div>
+                </div> 
+            </div>
+        </div>    
+        </section>
+        <!-- Clients-->
+        <div class="py-5">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-3 col-sm-6 my-3">
+                        <a href="#!"><img class="img-fluid img-brand d-block mx-auto" src="assets/img/logos/onigt.png" alt="..." style="width:50px;height:50px;"/></a>
+                    </div>
+                    <div class="col-md-3 col-sm-6 my-3">
+                        <a href="#!"><img class="img-fluid img-brand d-block mx-auto" src="assets/img/logos/ancfcc.png" alt="..." style="width:50px;height:50px;"/></a>
+                    </div>
+                    <div class="col-md-3 col-sm-6 my-3">
+                        <a href="#!"><img class="img-fluid img-brand d-block mx-auto" src="assets/img/logos/Logo_iav.png" alt="..." style="width:50px;height:50px;" /></a>
+                    </div>
+                    <div class="col-md-3 col-sm-6 my-3">
+                        <a href="#!"><img class="img-fluid img-brand d-block mx-auto" src="assets/img/logos/Logo ESGIT.png" alt="..." style="width:50px;height:50px;" /></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Contact-->
+        <section class="page-section" id="contact">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">Nous contacter</h2>
+                    <h3 class="text-about">Nous aimerions vraiment vous aider. Envie de travailler ensemble ou simplement nous dire bonjour ? <br> Envoyez-nous un message !</h3>
+                    
+                </div>
+                <!-- * * * * * * * * * * * * * * *-->
+                <!-- * * SB Forms Contact Form * *-->
+                <!-- * * * * * * * * * * * * * * *-->
+                <!-- This form is pre-integrated with SB Forms.-->
+                <!-- To make this form functional, sign up at-->
+                <!-- https://startbootstrap.com/solution/contact-forms-->
+                <!-- to get an API token!-->
+                <form id="contactForm" data-sb-form-api-token="API_TOKEN">
+                    <div class="row align-items-stretch mb-5">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <!-- Name input-->
+                                <input class="form-control" id="Nom" type="text" placeholder="Nom *" data-sb-validations="required" />
+                                <div class="invalid-feedback" data-sb-feedback="name:required">Entrez votre nom</div>
+                            </div>
+                            <div class="form-group">
+                                <!-- Email address input-->
+                                <input class="form-control" id="email" type="email" placeholder="Email *" data-sb-validations="required,email" />
+                                <div class="invalid-feedback" data-sb-feedback="email:required">Entrez votre email</div>
+                                <div class="invalid-feedback" data-sb-feedback="email:email">Email invalide</div>
+                            </div>
+                            <div class="form-group mb-md-0">
+                                <!-- Phone number input-->
+                                <input class="form-control" id="phone" type="tel" placeholder="Téléphone *" data-sb-validations="required" />
+                                <div class="invalid-feedback" data-sb-feedback="phone:required">Entrez votre numéro de téléphone</div>
+                            </div>
+                            
+                            <div class="form-group mb-md-0">
+                                <!-- diplome input-->
+                                <input class="form-control" id="Diplôme" type="Diplôme" placeholder="Niveau d'étude *" data-sb-validations="required" />
+                                <div class="invalid-feedback" data-sb-feedback="Diplôme:required">Veuillez saisir vos années d'études</div>
+                            </div>
+                           
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group form-group-textarea mb-md-0">
+                                <!-- Message input-->
+                                <textarea class="form-control" id="message" placeholder="Votre Message *" data-sb-validations="required"></textarea>
+                                <div class="invalid-feedback" data-sb-feedback="message:required">Rédigez votre message</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Submit success message-->
+                    <!---->
+                    <!-- This is what your users will see when the form-->
+                    <!-- has successfully submitted-->
+                    <div class="d-none" id="submitSuccessMessage">
+                        <div class="text-center text-white mb-3">
+                            <div class="fw-bolder">Votre message est successivement soumis !</div>
+                        </div>
+                    </div>
+                    <!-- Submit error message-->
+                    <!---->
+                    <!-- This is what your users will see when there is-->
+                    <!-- an error submitting the form-->
+                    <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Erreur lors de l'envoi de votre message !</div></div>
+                    <!-- Submit Button-->
+                    <div class="text-center"><button class="btn btn-primary btn-xl text-uppercase disabled" id="submitButton" type="Soumettre">Soumettre message</button></div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Footer-->
+        <footer class="footer py-4">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-4 text-lg-start">Copyright &copy; Servo stage 2022</div>
+                    <div class="col-lg-4 my-3 my-lg-0">
+                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                    <div class="col-lg-4 text-lg-end">
+                        <a class="link-dark text-decoration-none me-3" href="#!">Projet Web Mapping</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+       
+
+
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <!-- * *                               SB Forms JS                               * *-->
+        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    </body>
+</html>

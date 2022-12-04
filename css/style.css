@@ -1,0 +1,97 @@
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+}
+
+h2 {
+  size: heavy;
+  font-weight: bold;
+}
+
+a {
+  font-size: large;
+  font-weight: bold;
+}
+
+section {
+  padding: 1rem;
+}
+.fullpage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #ccc;
+  /* background-color: #fee140;
+  background-image: linear-gradient(90deg, #fee140 0%, #fa709a 100%); */
+  text-align: center;
+}
+.fullpage .content h2 {
+  font-weight: 100;
+  font-size: 5rem;
+}
+.fullpage .content h3 {
+  font-weight: 50;
+  font-size: 3rem;
+}
+
+.row {
+  display: flex;
+}
+.col-left {
+  flex: 0.85;
+  margin: 10px;
+}
+.col-right {
+  flex: 1.25;
+}
+.col-middle {
+  flex: 2.5;
+  margin: 10px;
+}
+
+#mapid {
+  width: 100vw;
+  height: 75vw;
+  position: relative;
+}
+
+.circle {
+  border-radius: 1%;
+}
+
+.info {
+  padding: 6px 8px;
+  font: 14px/16px Arial, Helvetica, sans-serif;
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+}
+.info h4 {
+  margin: 0 0 5px;
+  color: #777;
+}
+
+.legend {
+  line-height: 18px;
+  color: #555;
+}
+.legend i {
+  width: 18px;
+  height: 18px;
+  float: left;
+  margin-right: 8px;
+  opacity: 0.7;
+}
+
+.info{
+  background-color: lightgrey;
+  width: 300px;
+  border: 15px solid green;
+  padding: 50px;
+  margin: 20px;
+  }
